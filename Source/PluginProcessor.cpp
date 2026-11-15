@@ -411,8 +411,8 @@ void EchoFactoryProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     for (auto ch = getTotalNumInputChannels(); ch < getTotalNumOutputChannels(); ++ch)
         buffer.clear (ch, 0, buffer.getNumSamples());
 
-    if (auto* playHead = getPlayHead())
-        if (auto position = playHead->getPosition())
+    if (auto* hostPlayHead = getPlayHead())
+        if (auto position = hostPlayHead->getPosition())
             if (auto bpm = position->getBpm(); bpm.hasValue() && *bpm > 0.0)
                 hostBpm = *bpm;
 
